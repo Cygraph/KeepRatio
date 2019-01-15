@@ -39,23 +39,27 @@ Updated 2019-01-14
             }
         });
         
-        $kRElements = $( window ).find( ".keep-ratio" );
+        $kRElements = $( body ).find( ".keep-ratio" );
         $els.ratio( ratio );
         
         if ( ! listening && $els.size()) {
             $( window ).resize( inertiaDelay );
-        }
+        };
+        return $els;
     }
     
     $.fn.freeRatio = function () {
         $els = $( this );
         
-        $els.removeClass( "keep-ratio" );
-        $els.data( "keep-ratio", undefined );
-        $els.removeData( "keep-ratio" );
+        if ( $els.data( "keep-ratio" )) {
+            $els.removeClass( "keep-ratio" );
+            $els.data( "keep-ratio", undefined );
+            $els.removeData( "keep-ratio" );
+        };
+        return $els;
     }
     
-    $.fn.ratio = function ( ratio ) {
+    $.fn.setRatio = function ( ratio ) {
         $els = $( this ), $el;
         
         if ( ratio === undefined ) {
@@ -80,12 +84,12 @@ Updated 2019-01-14
         if ( inertia ) {
             timerId = setTimeout( inertiaProof, inertia )
         }
-        else $kRElements.ratio();
+        else $kRElements.setRatio();
     }
     
     function inertiaProof () {
         if ( cachedWidth === $( window ).width()) {
-            $kRElements.ratio();
+            $kRElements.setRatio();
         }
     }
     
