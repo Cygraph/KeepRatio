@@ -1,0 +1,14 @@
+.box {
+    margin: 50px 50px 30px 50px;
+    border: 1px solid silver;
+}
+
+.box-1 {
+    width: 33%;
+    height: 80px;
+}
+
+.box-2 {
+    width: 20%;
+    height: 160px;
+}
