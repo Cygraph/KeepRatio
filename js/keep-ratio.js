@@ -48,7 +48,7 @@ Updated 2019-01-15
     }
     
     $.fn.freeRatio = function () {
-        $els = $( this ), $el;
+        var $els = $( this ), $el;
         
         $els.each( function () {
             $el = $( this );
@@ -59,9 +59,9 @@ Updated 2019-01-15
             }
         });
         
-        $kRElements = $( body ).find( ".keep-ratio" );
+        $kRElements = $( "body" ).find( ".keep-ratio" );
         
-        if ( listening && ! $els.size()) {
+        if ( listening && ! $els.length ) {
             listening = false;
             $( window ).off( "resize", inertiaDelay );
         }
@@ -96,16 +96,16 @@ Updated 2019-01-15
         if ( inertia ) {
             timerId = setTimeout( inertiaProof, inertia )
         }
-        else setKeptRatio();
+        else resetRatio();
     }
     
     function inertiaProof () { console.log( "inertiaProof", cachedWidth );
         if ( cachedWidth === $( window ).width()) {
-            setKeptRatio();
+            resetRatio();
         }
     }
     
-    function setKeptRatio () {
+    function resetRatio () {
         $kRElements.each( function () {
             $el = $( this );
             ratio = $el.data( "keep-ratio" );
