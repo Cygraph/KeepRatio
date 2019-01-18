@@ -1,14 +1,15 @@
 .box {
-    margin: 50px 50px 30px 50px;
+    float: left;
+    margin: 50px 0 30px 50px;
     border: 1px solid silver;
 }
 
 .box-1 {
-    width: 33%;
+    width: 36%;
     height: 80px;
 }
 
 .box-2 {
-    width: 20%;
+    width: 18%;
     height: 160px;
 }
