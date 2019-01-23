@@ -99,7 +99,7 @@ Updated 2019-01-15
         else resetRatio();
     }
     
-    function inertiaProof () { console.log( "inertiaProof", cachedWidth );
+    function inertiaProof () {
         if ( cachedWidth === $( window ).width()) {
             resetRatio();
         }
