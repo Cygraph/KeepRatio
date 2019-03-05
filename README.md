@@ -8,6 +8,10 @@
 - $.fn.freeRatio frees elements from auto resizing
 - The initial aspectratio can be restored after freeing
 
+About aspectratio (width/height):
+smaller than 1 is portrait, 1 is square, bigger than 1 is landscape
+
+
 Keeps the current aspectratio
 ```
 $( el ).keepRatio()
