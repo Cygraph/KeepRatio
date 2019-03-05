@@ -32,12 +32,12 @@ $( el ).ratio()
 $( el ).ratio( 1 )
 
 ```
-HTML notation
+HTML notation by data attribute
 ```
 <div data-keep-ratio=1></div>
 
 ```
-Register them via script
+Register them via script. Selects elements by the data attribute
 ```
 $.keepRatio.register()
 
