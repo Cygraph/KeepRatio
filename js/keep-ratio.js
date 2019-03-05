@@ -125,7 +125,7 @@ Updated 2019-03-05
         }
     })();
     
-    // Private helper ------------------------
+    // Resize event methods ------------
     
     function activate () {
         if ( ! listening ) {
