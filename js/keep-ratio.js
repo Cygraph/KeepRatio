@@ -5,10 +5,7 @@ Globals: none
 Designer: © Michael Schwarz, CyDot, look@cydot.de
 Vers. 0.2.0 
 Updated 2019-03-05
-
--------------------------------------------
-
- */
+*/
 
 ;( function ( $ ) {
     
