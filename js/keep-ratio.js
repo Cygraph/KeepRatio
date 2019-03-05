@@ -3,8 +3,8 @@ File: keep-ratio.js
 Dependencies: jQuery,
 Globals: none
 Designer: © Michael Schwarz, CyDot, look@cydot.de
-Vers. 0.1.0 
-Updated 2019-01-15
+Vers. 0.2.0 
+Updated 2019-03-05
 
 -------------------------------------------
 
@@ -12,104 +12,142 @@ Updated 2019-01-15
 
 ;( function ( $ ) {
     
-    var $kRElements,
+    var $kr_elems,
     listening = false,
-    inertia = 50,
+    _inertia = 50,
     timerId,
     cachedWidth;
     
     $.fn.keepRatio = function ( ratio ) {
-        var hasRatio = $.isNumeric( ratio ),
-        $els = $( this ), $el;
+        var provided = $.isNumeric( ratio ),
+        args = arguments.length,
+        $els = $( this ), $el,
+        currentRatio;
+        
+        $els.each( function () {
+            $el = $( this ); 
+            currentRatio = $el.ratio();
+            
+            if ( ! $el.data( "keep-ratio" )) { 
+                $el.data( "initial-ratio", currentRatio );
+                $el.addClass( "keep-ratio" );
+            }
+            if ( provided ) {
+                ratio = Number( ratio );
+                $el.data( "keep-ratio", ratio );
+                $el.ratio( ratio );
+            }
+            else if ( ! args ) {
+                $el.data( "keep-ratio", currentRatio );
+            }
+        });
+        
+        $kr_elems = $( ".keep-ratio" );
+        
+        if ( ! listening && $kr_elems.length ) {
+            activate();
+        };
+        return $els;
+    }
+    
+    $.fn.freeRatio = function ( reset ) {
+        var $els = $( this ).filter( ".keep-ratio" ),
+        $el;
         
         $els.each( function () {
             $el = $( this );
             
-            if ( hasRatio ) {
-                $el.data( "keep-ratio", ratio );
-                if ( ! $el.hasClass( "keep-ratio" )) {
-                    $el.addClass( "keep-ratio" );
-                }
-                $el.ratio( ratio );
-            }
-            else if ( ! $el.data( "keep-ratio" )) {
-                $el.data( "keep-ratio", $el.ratio());
-                $el.addClass( "keep-ratio" );
-            }
+            if ( reset === true ) {
+                $el.ratio( $el.data( "initial-ratio" ));
+            };
+            $el.removeData( "initial-ratio" );
+            $el.removeData( "keep-ratio" );
+            $el.removeClass( "keep-ratio" );
         });
         
-        $kRElements = $( "body" ).find( ".keep-ratio" );
+        $kr_elems = $( ".keep-ratio" );
         
-        if ( ! listening && $els.length ) {
-            listening = true;
-            $( window ).resize( inertiaDelay );
-        }
-        return $els;
-    }
-    
-    $.fn.freeRatio = function () {
-        var $els = $( this ), $el;
-        
-        $els.each( function () {
-            $el = $( this );
-            if ( $el.data( "keep-ratio" )) {
-                $el.removeClass( "keep-ratio" );
-                $el.data( "keep-ratio", undefined );
-                $el.removeData( "keep-ratio" );
-            }
-        });
-        
-        $kRElements = $( "body" ).find( ".keep-ratio" );
-        
-        if ( listening && ! $els.length ) {
-            listening = false;
-            $( window ).off( "resize", inertiaDelay );
-        }
-        return $els;
+        if ( ! $kr_elems.length ) {
+            deactivate();
+        };
+        return $( this );
     }
     
     $.fn.ratio = function ( ratio ) {
-        var $els = $( this ), $el;
+        var $els = $( this );
         
         if ( ! arguments.length ) {
             return $els.width() / $els.height();
-        }
-        else {
-            $els.each( function () {
-                $el = $( this );
-                $el.height( $el.width() / ratio );
-            })
-        }
-        return $els;
+        };
+        
+        var $el;
+        return $els.each( function () {
+            $el = $( this );
+            $el.height( $el.width() / Number( ratio ));
+        });
     }
     
-    $.keepRatio_inertia = function ( ms ) {
-        if ( ! arguments.length ) {
-            return inertia;
+    $.keepRatio = ( function () {
+        
+        function elements () {
+            return $( ".keep-ratio" );
         }
-        inertia = ms;
+        
+        function inertia ( ms ) {
+            if ( ! arguments.length ) {
+                return _inertia;
+            };
+            _inertia = ms;
+            return $.keepRatio;
+        }
+        
+        function update () {
+            updateRatios();
+            return $.keepRatio;
+        }
+        
+        return {
+            elements: elements,
+            inertia: inertia,
+            update: update
+        }
+    })();
+    
+    // Private helper ------------------------
+    
+    function activate () {
+        if ( ! listening ) {
+            listening = true;
+            $( window ).resize( inertiaDelay );
+        }
+    }
+    
+    function deactivate () {
+        if ( listening ) {
+            listening = false;
+            $( window ).off( "resize", inertiaDelay );
+        }
     }
     
     function inertiaDelay () {
         clearTimeout( timerId );
         cachedWidth = $( window ).width();
-        if ( inertia ) {
-            timerId = setTimeout( inertiaProof, inertia )
+        if ( _inertia ) {
+            timerId = setTimeout( inertiaProof, _inertia )
         }
-        else resetRatio();
+        else updateRatios();
     }
     
     function inertiaProof () {
         if ( cachedWidth === $( window ).width()) {
-            resetRatio();
+            updateRatios();
         }
     }
     
-    function resetRatio () {
-        $kRElements.each( function () {
+    function updateRatios () {
+        $kr_elems.each( function () {
             $el = $( this );
-            ratio = $el.data( "keep-ratio" );
-            if ( ratio ) $el.height( $el.width() / ratio );
+            $el.height( $el.width() / $el.data( "keep-ratio" ));
         });
     }
     

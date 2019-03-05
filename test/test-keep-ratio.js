@@ -14,7 +14,9 @@ Updated: 2019-01-09
     // $.fn.ratio()
     // $.keepRatio_inertia()
     
-    function onDoc () { 
+    function onDoc () {
+        
+        //$.keepRatio.inertia( 30 );
         
         var $els = $( ".box" );
         
@@ -22,11 +24,9 @@ Updated: 2019-01-09
         
         $els.ratio( 1 );
         
-        $( ".box-1" ).freeRatio();
+        //$( ".box-1" ).freeRatio();
         
-        //$.keepRatio_inertia( 30 );
-        
-        console.log( "inertia", $.keepRatio_inertia());
+        console.log( "keepRatio", $els );
     }
     
     // -----------------------------------------------
