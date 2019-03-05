@@ -29,7 +29,7 @@ $( el ).freeRatio()
 $( el ).freeRatio( true )
 
 ```
-Gets or sets the aspectratio 
+Gets or sets the aspectratio. Gets from the first in the query. Sets all in the query
 ```
 $( el ).ratio()
 
@@ -44,5 +44,14 @@ HTML notation by data attribute
 Register them via script. Selects elements by the data attribute
 ```
 $.keepRatio.register()
+
+```
+Gets or sets the inertia time in milliseconds. This defines the event delay while resizing. 0 ms means fireing the event as usual, which is very often.
+Default is 50 ms so the rendering of the ratio occurs only after resize has ended. At mobiles it happens on orientation change
+
+```
+$.keepRatio.inertia()
+
+$.keepRatio.inertia( 75 )
 
 ```
