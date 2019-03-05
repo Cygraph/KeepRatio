@@ -3,7 +3,7 @@ File: keep-ratio.js
 Dependencies: jQuery,
 Globals: none
 Designer: © Michael Schwarz, CyDot, look@cydot.de
-Vers. 0.2.0 
+Vers. 0.2.1 
 Updated 2019-03-05
 */
 
@@ -27,7 +27,9 @@ Updated 2019-03-05
             
             if ( ! $el.data( "keep-ratio" )) { 
                 $el.data( "initial-ratio", currentRatio );
-                $el.addClass( "keep-ratio" );
+                if ( ! $el.hasClass( "keep-ratio" )) { 
+                    $el.addClass( "keep-ratio" );
+                }
             }
             if ( provided ) {
                 ratio = Number( ratio );
@@ -86,6 +88,18 @@ Updated 2019-03-05
     
     $.keepRatio = ( function () {
         
+        // For html notation
+        // Finds elements with data-keep-ratio attribute
+        
+        function register () {
+            $( "[data-keep-ratio]" )
+                .not( ".keep-ratio" )
+                .addClass( "keep-ratio" );
+            
+            $kr_elems = elements();
+            return $.keepRatio;
+        }
+        
         function elements () {
             return $( ".keep-ratio" );
         }
@@ -104,6 +118,7 @@ Updated 2019-03-05
         }
         
         return {
+            register: register,
             elements: elements,
             inertia: inertia,
             update: update

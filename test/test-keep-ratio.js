@@ -1,7 +1,7 @@
 /*
 test-breakspaces.js
 Designer: © Michael Schwarz, CyDot
-Updated: 2019-01-09
+Updated: 2019-03-05
 */
 
 
@@ -12,13 +12,16 @@ Updated: 2019-01-09
     // $.fn.keepRatio()
     // $.fn.freeRatio()
     // $.fn.ratio()
-    // $.keepRatio_inertia()
+    // $.keepRatio.register()
+    // $.keepRatio.elements()
+    // $.keepRatio.inertia()
+    // $.keepRatio.update()
     
     function onDoc () {
         
-        //$.keepRatio.inertia( 30 );
+        $.keepRatio.register().inertia( 30 );
         
-        var $els = $( ".box" );
+        var $els = $( ".box-1, .box-2" );
         
         $els.keepRatio();
         
@@ -26,7 +29,7 @@ Updated: 2019-01-09
         
         //$( ".box-1" ).freeRatio( true );
         
-        console.log( "keepRatio", $els );
+        console.log( "keepRatio", $els, $.keepRatio.elements());
     }
     
     // -----------------------------------------------
