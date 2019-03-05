@@ -24,7 +24,7 @@ Updated: 2019-01-09
         
         $els.ratio( 1 );
         
-        //$( ".box-1" ).freeRatio();
+        //$( ".box-1" ).freeRatio( true );
         
         console.log( "keepRatio", $els );
     }

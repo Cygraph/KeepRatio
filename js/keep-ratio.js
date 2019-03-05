@@ -102,7 +102,7 @@ Updated 2019-03-05
         }
         
         function update () {
-            updateRatios();
+            renderRatios();
             return $.keepRatio;
         }
         
@@ -135,16 +135,16 @@ Updated 2019-03-05
         if ( _inertia ) {
             timerId = setTimeout( inertiaProof, _inertia )
         }
-        else updateRatios();
+        else renderRatios();
     }
     
     function inertiaProof () {
         if ( cachedWidth === $( window ).width()) {
-            updateRatios();
+            renderRatios();
         }
     }
     
-    function updateRatios () {
+    function renderRatios () {
         $kr_elems.each( function () {
             $el = $( this );
             $el.height( $el.width() / $el.data( "keep-ratio" ));
