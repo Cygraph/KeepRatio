@@ -16,26 +16,26 @@ I use it in responsive websites for thumb menus, grids, svg-graphics and player
 
 Keeps the current aspectratio
 ```
-$( el ).keepRatio()
+$( els ).keepRatio()
 
 ```
 Sets the aspectratio and keeps it. Stores the initial aspectratio
 ```
-$( el ).keepRatio( 1 )
+$( els ).keepRatio( 1 )
 
 ```
 Frees the aspectratio. Set true to restore the initial aspectratio
 ```
-$( el ).freeRatio()
+$( els ).freeRatio()
 
-$( el ).freeRatio( true )
+$( els ).freeRatio( true )
 
 ```
 Gets or sets the aspectratio. Gets from the first in the query. Sets all in the query
 ```
 $( el ).ratio()
 
-$( el ).ratio( 1 )
+$( els ).ratio( 1 )
 
 ```
 HTML notation by data attribute
