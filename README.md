@@ -11,6 +11,8 @@
 About aspectratio (width/height):
 smaller than 1 is portrait, 1 is square, bigger than 1 is landscape
 
+I use it in responsive websites for thumb menus, grids, svg-graphics and player
+
 
 Keeps the current aspectratio
 ```
