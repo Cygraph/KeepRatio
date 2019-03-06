@@ -47,6 +47,10 @@ Register them via script. Selects elements by the data attribute
 ```
 $.keepRatio.register()
 
+or
+
+$( document ).ready( $.keepRatio.register )
+
 ```
 Gets or sets the inertia time in milliseconds. This defines the event delay while resizing. 0 ms means fireing the event as usual, which is very often.
 Default is 50 ms so the rendering of the ratio occurs only after resize has ended. At mobiles it happens on orientation change
