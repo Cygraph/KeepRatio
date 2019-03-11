@@ -4,7 +4,7 @@ Dependencies: jQuery,
 Globals: none
 Designer: © Michael Schwarz, CyDot, look@cydot.de
 Vers. 0.2.2 
-Updated 2019-03-05
+Updated 2019-03-11
 */
 
 ;( function ( $ ) {
