@@ -3,13 +3,14 @@ File: keep-ratio.js
 Dependencies: jQuery,
 Globals: none
 Designer: © Michael Schwarz, CyDot, look@cydot.de
-Vers. 0.2.1 
+Vers. 0.2.2 
 Updated 2019-03-05
 */
 
 ;( function ( $ ) {
     
-    var $kr_elems,
+    var version = "0.2.2",
+    $kr_elems,
     listening = false,
     _inertia = 50,
     timerId,
@@ -87,6 +88,7 @@ Updated 2019-03-05
     }
     
     $.keepRatio = ( function () {
+        var v = version;
         
         // For html notation
         // Finds elements with data-keep-ratio attribute
@@ -118,6 +120,7 @@ Updated 2019-03-05
         }
         
         return {
+            version: v,
             register: register,
             elements: elements,
             inertia: inertia,
