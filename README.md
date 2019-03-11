@@ -1,5 +1,5 @@
 # KeepRatio 
-Version 0.2.1
+Version 0.2.2
 
 ### jQuery plugins to keep, free, get or set the aspectratio of elements
 #### $.keepRatio, $.fn.keepRatio, $.fn.freeRatio, $.fn.ratio
